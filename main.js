@@ -146,8 +146,8 @@ document.addEventListener("DOMContentLoaded", function() {
         .forEach(function(cnt){
             cnt.addEventListener("mousemove", function(dets){
                 document.querySelector("#cursor").children[dets.target.dataset.index].style.opacity = 1;
-                document.querySelector("#image1").style.filter = "grayscale()";
-                document.querySelector("#image1").style.transition = "all 0.5s";
+                document.querySelector(".projectImg").style.filter = "grayscale()";
+                document.querySelector(".projectImg").style.transition = "all 0.5s";
                 document.querySelector("#before").children[dets.target.dataset.index].style.backgroundColor = "#b4bacf";
                 document.querySelector("#before").children[dets.target.dataset.index].style.transition = "all 0.5s";
                 document.querySelector("#cursor").children[dets.target.dataset.index].style.transform = `translate(${dets.clientX}px, ${dets.clientY}px)`;
@@ -161,16 +161,67 @@ document.addEventListener("DOMContentLoaded", function() {
         .forEach(function(cnt){
             cnt.addEventListener("mouseout", function(dets){
                 document.querySelector("#cursor").children[dets.target.dataset.index].style.opacity = 0;
-                document.querySelector("#image1").style.filter = "none";
+                document.querySelector(".projectImg").style.filter = "none";
                 document.querySelector("#before").children[dets.target.dataset.index].style.backgroundColor = "#f2f2f2";
                 // document.querySelector("#cursor").children[dets.target.dataset.index].style.transform = `translate(${dets.clientX}px, ${dets.clientY}px)`;
                 // console.log(document.querySelector("#cursor").children[dets.target.dataset.index].style.transform = `translate(${dets.clientX}px, ${dets.clientY}px)`);
             });
         })
     }
-    function changeBackgroundColor(){
-        
+
+    document.getElementById('contactForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+    
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const message = document.getElementById('message').value;
+        const formResponse = document.getElementById('formResponse');
+    
+        if (name && email && message) {
+            formResponse.textContent = 'Thank you! Your message has been sent.';
+            formResponse.style.display = 'block';
+            formResponse.style.color = '#28a745';
+            document.getElementById('contactForm').reset();
+    
+            setTimeout(() => {
+                formResponse.style.display = 'none';
+            }, 5000);
+        } else {
+            formResponse.textContent = 'Please fill in all fields.';
+            formResponse.style.display = 'block';
+            formResponse.style.color = '#dc3545';
+        }
+    });
+    
+    function adjustCircleSize() {
+        const circle = document.querySelector('.background-circle');
+        const contactSection = document.getElementById('contact');
+    
+        if (circle && contactSection) {
+            const scrollPosition = window.scrollY;
+            const sectionTop = contactSection.offsetTop;
+            const sectionHeight = contactSection.offsetHeight;
+            const windowHeight = window.innerHeight;
+    
+            // Calculate the distance from the top of the contact section to the bottom of the viewport
+            const distanceToSectionBottom = sectionTop + sectionHeight - scrollPosition;
+    
+            // Calculate scale based on the distance from the bottom of the contact section to the viewport bottom
+            let scaleValue = distanceToSectionBottom / (sectionHeight + windowHeight);
+    
+            // Ensure scaleValue is between 0.5 and 1 (adjust as needed)
+            // scaleValue = Math.max(scaleValue, 0.5);
+            scaleValue = Math.min(scaleValue, 0.5);
+    
+            // Apply the scale to width and height of the circle
+            circle.style.width = `${100 * scaleValue}vw`;
+            circle.style.height = `${100 * scaleValue}vw`;
+        }
     }
+    
+
+    window.addEventListener('scroll', adjustCircleSize); 
+    
     revealToSpan();
     valueSetter();
     loadAnimation();

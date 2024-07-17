@@ -1,3 +1,7 @@
+:root{
+    --darkGreen: #253b39;
+    --lightGreen: #14cf93;
+}
 *{
     margin: 0;
     padding: 0;
@@ -400,6 +404,28 @@ polyline, path {
     padding: .7vw;
 }
 
+#cursor1 {
+    position: absolute;
+    /* width: 27vw; */
+    top: 0;
+    left: 0;
+    z-index: 999999;
+}
+
+#cursor1 > div {
+    transition: all cubic-bezier(0.19, 1, 0.22, 1) 1s;
+    opacity: 0;
+    position: absolute;
+}
+
+#cursor1 .crow {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    padding: .7vw;
+}
+
 .crow .ccircle {
     width: 2vw;
     height: 2vw;
@@ -441,6 +467,116 @@ polyline, path {
     animation-delay: 4s;
 }
 
+#elem1 {
+    width: 100%;
+    position: relative;
+}
+
+#elem1 img {
+    width: 40%;
+    opacity: 0;
+    animation: an 4s linear infinite;
+    position: absolute;
+}
+
+#elem1 img:nth-child(2) {
+    animation-delay: 1s;
+}
+
+#elem1 img:nth-child(3) {
+    animation-delay: 2s;
+}
+
+#elem1 img:nth-child(4) {
+    animation-delay: 3s;
+}
+
+#elem1 img:nth-child(5) {
+    animation-delay: 4s;
+}
+
+#border1{
+    content: "";
+    position: relative;
+    width: 100%;
+    height: 10vw;
+    top: -7vh;
+    padding: 0;
+    margin: 0;
+    z-index: 999999;
+    background-image: url(/assets/texture\ line.svg);
+    background-size: cover;
+    /* margin-top: 10vw; */
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,1));
+}
+
+
+#skill {
+    position: relative;
+    top: -10vh;
+    height: 100vh;
+    width: auto;
+    background-color: #fff;
+    margin-top: 0;
+}
+#skillTopic{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+#skillTopic .workrow {
+    padding: 0 12vw ;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10vh;
+}
+#skillTopic .workrow h1{
+    margin-right: 30vw;
+}
+#skillSection {
+    position: relative;
+    display: grid;
+    margin-top: 10vh;
+}
+#skillIcon{
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.iconRow{
+    margin-top: 2rem;
+
+}
+
+.proIcon{
+    width: 10rem;
+    height: auto;
+    margin: 0 2vw;
+    position: relative;
+    top: 0;
+    transition: all 0.5s ease; 
+    
+    /* background-color: #f2f2f2;
+    border-radius: 0.5rem;
+    box-shadow: 0.1rem 0.2rem 1rem #d9d9d9; */
+}
+
+.proIcon:hover{
+    width: 10rem;
+    height: auto;
+    margin: 0 2vw;
+    
+    background-color: #e1e1e1;
+    border-radius: 0.5rem;
+    box-shadow: 0.1rem 0.2rem 1rem #d9d9d9;
+    top: -1rem;
+}
+
 @keyframes an {
     0% {
         opacity: 1;
@@ -459,6 +595,129 @@ polyline, path {
     }
 }
 
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+#contactSection {
+    margin: 0;
+    padding: 0;
+    background-color: var(--darkGreen);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.background-circle {
+    position: absolute;
+    bottom: -90vw;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 130vw;
+    height: 130vw;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transition: width 0.3s, height 0.3s;
+    z-index: 0;
+}
+
+#contact {
+    padding: 2rem;
+    text-align: center;
+    z-index: 1;
+    position: relative;
+}
+
+#contact h2 {
+    margin-bottom: 1rem;
+    color: #fff;
+    font-size: 5rem;
+}
+
+#contact p {
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    color: #ccc;
+}
+
+.inputGroup {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.inputGroup input,
+.inputGroup textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+}
+
+.inputGroup input:focus,
+.inputGroup textarea:focus {
+    border-color: #007bff;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.inputGroup label {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    background: #3b4f4d;
+    padding: 0 0.5rem;
+    transition: top 0.3s, font-size 0.3s;
+    pointer-events: none;
+    color: #fff;
+    
+}
+
+.inputGroup input:focus + label,
+.inputGroup input:not(:placeholder-shown) + label,
+.inputGroup textarea:focus + label,
+.inputGroup textarea:not(:placeholder-shown) + label {
+    top: 0;
+    font-size: 1rem;
+    color: #f2f2f2;
+    border-radius: 0.3rem;
+}
+
+/* Target the placeholders in the contact form */
+
+
+button {
+    width: auto;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 1rem;
+    background: var(--darkGreen);
+    color: #fff;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.4s;
+}
+
+button:hover {
+    background: #f2f2f2;
+    color: var(--darkGreen);
+}
+
+#formResponse {
+    margin-top: 1rem;
+    color: #28a745;
+    display: none;
+}
 
 
 
