@@ -225,9 +225,13 @@ polyline, path {
 
 #imagery .imgleft h1{
     font-weight: 400;
-    font-size: 3vw;
+    font-size: 2.5rem;
     color: #333;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
+}
+
+#imagery .imgleft h1 span{
+    font-weight: 600;
 }
 
 #imagery .imgright {
